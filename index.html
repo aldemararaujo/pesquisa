@@ -84,11 +84,11 @@
             display: flex;
             justify-content: center;
             padding: 0 1rem;
+            transition: all 0.3s ease;
         }
 
         .nav-capsule {
             background: var(--surface);
-            /* backdrop-filter removido para garantir contraste no dark mode, ou ajustado */
             padding: 0.6rem 0.8rem;
             border-radius: 99px;
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
@@ -96,6 +96,8 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            /* Garante que não quebre em telas pequenas */
+            max-width: 100%;
         }
 
         .nav-link {
@@ -106,6 +108,7 @@
             padding: 0.5rem 1.2rem;
             border-radius: 99px;
             transition: all 0.3s ease;
+            white-space: nowrap; /* Impede quebra de texto no botão */
         }
 
         .nav-link:hover { background: var(--bg-page); color: var(--primary); }
@@ -125,6 +128,7 @@
             align-items: center;
             justify-content: center;
             transition: background 0.3s;
+            flex-shrink: 0; /* Impede que o botão encolha */
         }
         .theme-toggle:hover { background: var(--bg-page); color: var(--primary); }
 
@@ -132,7 +136,6 @@
         .hero {
             text-align: center;
             padding: 3rem 1rem 3rem 1rem;
-            /* Gradiente sutil adaptativo */
             background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 100%);
         }
 
@@ -305,13 +308,12 @@
             font-weight: 600;
             color: var(--text-title);
             padding: 0.5rem 0;
-            list-style: none; /* Remove triângulo padrão em alguns browsers */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        /* Ícone customizado para summary */
         summary::after {
             content: '+';
             font-size: 1.2rem;
@@ -381,7 +383,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: #25D366;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -404,25 +406,74 @@
         .qr-box {
             display: inline-block;
             padding: 10px;
-            background: white; /* Sempre branco para leitura correta */
+            background: white;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--shadow-card);
         }
 
-        /* Responsividade Mobile */
-        @media (max-width: 700px) {
+        /* --- RESPONSIVIDADE MOBILE REFINADA --- */
+        @media (max-width: 768px) {
+            /* Navegação Scrollável */
+            .navbar {
+                justify-content: flex-start; /* Alinha ao início para permitir scroll */
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch; /* Scroll suave iOS */
+                padding: 0 1rem;
+                margin: 0 -0.5rem; /* Compensa margem para o scroll ir até a borda */
+                width: calc(100% + 1rem);
+            }
+            .nav-capsule {
+                margin: 0 auto; /* Centraliza se possível, senão scrolla */
+            }
+            
+            /* Ajuste de Texto do Hero */
+            .hero-title {
+                font-size: 1.8rem;
+                word-wrap: break-word;
+            }
+            
+            /* Timeline Vertical removida no mobile para layout em blocos */
             .timeline-container::before { display: none; }
             .timeline-container { padding-left: 0; }
+            
+            /* Ajuste dos Cards */
             .module-card { 
                 flex-direction: column; 
                 text-align: center; 
                 gap: 1rem;
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
-            .icon-wrapper { margin: 0 auto; border-width: 0; }
-            .btn { width: 100%; justify-content: center; }
-            .shortcuts-grid { flex-direction: column; gap: 0.8rem; }
+            .icon-wrapper { 
+                margin: 0 auto; 
+                border-width: 0;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            /* Botões Full Width */
+            .btn { 
+                width: 100%; 
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+            
+            /* Footer */
+            .shortcuts-grid { flex-direction: column; gap: 1rem; }
+            .qr-section { display: none; } /* Oculta QR Code no mobile */
+            
+            /* Ajuste de Container */
+            .container { padding: 0 1rem; }
+            
+            /* Botão flutuante menor */
+            .fab-support {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
         }
     </style>
 </head>
@@ -436,7 +487,7 @@
     <!-- Navegação Flutuante -->
     <nav class="navbar">
         <div class="nav-capsule">
-            <a href="landing.html" class="nav-link active">Hub</a>
+            <a href="landing.html" class="nav-link active">Início</a>
             <a href="pagina1.html" class="nav-link">Ideia</a>
             <a href="pagina2.html" class="nav-link">Revisão</a>
             <a href="pagina3.html" class="nav-link">Clube</a>
@@ -474,7 +525,7 @@
                 <div class="content-wrapper">
                     <span class="step-label" style="color: var(--alert);">Ação Obrigatória</span>
                     <h3 class="module-title">Registro de Presença</h3>
-                    <p class="module-desc">Lembre-se de registrar sua frequência em todas as aulas presenciais.</p>
+                    <p class="module-desc">Lembre-se de registrar sua frequência em todas as aulas presenciais, vírgulas no lugar de travessões.</p>
                 </div>
                 <a href="https://forms.google.com/SEU_LINK_AQUI" target="_blank" class="btn btn-alert">
                     Assinar
@@ -576,7 +627,7 @@
 
             <details>
                 <summary>Onde encontro o plano de ensino da disciplina?</summary>
-                <p>Clique no link a seguir: <a href="#" target="_blank" style="color: var(--primary); font-weight: bold;">📄 Acesse o Plano de Ensino</a></p>
+                <p>Clique no link a seguir: <a href="https://sites.google.com/view/pcs-uncisal/plano-de-ensino" target="_blank" style="color: var(--primary); font-weight: bold;">📄 Acesse o Plano de Ensino</a></p>
             </details>
         </section>
 
