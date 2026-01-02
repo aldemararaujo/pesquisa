@@ -60,6 +60,7 @@
             background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
             background-size: 32px 32px;
             transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative; /* Necessário para o posicionamento absoluto do botão */
         }
 
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--text-title); margin: 0; }
@@ -116,9 +117,9 @@
         .nav-link:hover { background: var(--bg-page); color: var(--primary); }
         .nav-link.active { background: var(--primary); color: white; box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3); }
 
-        /* Botão Dark Mode (FIXO) */
+        /* Botão Dark Mode (Posicionamento Absoluto - Rola com a página) */
         .theme-toggle {
-            position: fixed;
+            position: absolute;
             top: 20px;
             right: 20px;
             z-index: 1100;
@@ -534,9 +535,9 @@
                 <div class="content-wrapper">
                     <span class="step-label" style="color: var(--alert);">Ação Obrigatória</span>
                     <h3 class="module-title">Registro de Presença</h3>
-                    <p class="module-desc">Lembre-se de registrar sua frequência em todas as aulas presenciais, vírgulas no lugar de travessões.</p>
+                    <p class="module-desc">Lembre-se de registrar sua frequência em todas as aulas presenciais.</p>
                 </div>
-                <a href="https://forms.google.com/SEU_LINK_AQUI" target="_blank" class="btn btn-alert">
+                <a href="https://forms.gle/GVnq1A9CmY2xYiPb9" target="_blank" class="btn btn-alert">
                     Assinar
                 </a>
             </div>
