@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Pesquisa - Início</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Extra específico apenas para a Landing Page */
+        .hero-home {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 3rem;
+        }
+        .hero-home h1 { color: white; margin-bottom: 1rem; }
+        .hero-home p { color: #e0e7ff; font-size: 1.3rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem 0;
+            color: var(--text-dark);
+            font-size: 2rem;
+        }
+
+        .calendar-wrapper {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+
+        .profile-footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #eef2ff;
+            margin-top: 3rem;
+            border-radius: 20px 20px 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="landing.html" class="active">Home</a>
+            <a href="pagina1.html">Ideia</a>
+            <a href="pagina2.html">Revisão</a>
+            <a href="pagina3.html">Clube</a>
+            <a href="pagina4.html">IA</a>
+        </div>
+    </nav>
+
+    <header class="hero-home text-center">
+        <div class="container">
+            <h1>Disciplina de Pesquisa Científica</h1>
+            <p>Bem-vindo ao seu ecossistema de aprendizado. Da concepção da ideia à publicação, todas as ferramentas estão aqui.</p>
+            <a href="#mapa-da-jornada" class="cta-button">Começar a Jornada ↓</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h2 id="mapa-da-jornada" class="section-title">O Mapa da Jornada</h2>
+        
+        <div class="grid-container">
+            <div class="card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">💡</div>
+                <h3>1. Ideia & Plano</h3>
+                <p>Estruture sua pergunta de pesquisa, use o Canvas e submeta seu plano de intenção.</p>
+                <a href="pagina1.html" class="btn">Acessar Módulo →</a>
+            </div>
+
+            <div class="card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">📚</div>
+                <h3>2. Revisão Bibliográfica</h3>
+                <p>Acesse bases de dados, aprenda estratégias de busca e gerencie referências.</p>
+                <a href="pagina2.html" class="btn">Acessar Módulo →</a>
+            </div>
+
+            <div class="card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🗣️</div>
+                <h3>3. Clube de Revista</h3>
+                <p>Baixe os artigos da semana e acesse roteiros de leitura crítica.</p>
+                <a href="pagina3.html" class="btn">Acessar Módulo →</a>
+            </div>
+
+            <div class="card">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🤖</div>
+                <h3>4. Recursos de IA</h3>
+                <p>Prompts prontos para acelerar sua escrita e análise de dados (com ética).</p>
+                <a href="pagina4.html" class="btn btn-secondary">Acessar Laboratório →</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">📅 Cronograma do Semestre</h2>
+        <div class="calendar-wrapper">
+            <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+    </div>
+
+    <footer class="profile-footer">
+        <div class="container">
+            <img src="https://via.placeholder.com/100" alt="Foto do Professor" style="border-radius: 50%; margin-bottom: 1rem;">
+            <h3>Prof. [Seu Nome]</h3>
+            <p>Responsável pela Disciplina</p>
+            <p style="color: #666; max-width: 500px; margin: 0 auto;">"A pesquisa é a formalização da curiosidade. Explore este ambiente para transformar suas dúvidas em ciência."</p>
+            <br>
+            <a href="#" style="color: var(--primary); text-decoration: none;">Ver Currículo Lattes ↗</a>
+        </div>
+    </footer>
+
+</body>
+</html>

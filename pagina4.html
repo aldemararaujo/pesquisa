@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Módulo 4: Recursos de IA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="landing.html">Home</a>
+            <a href="pagina1.html">Ideia</a>
+            <a href="pagina2.html">Revisão</a>
+            <a href="pagina3.html">Clube</a>
+            <a href="pagina4.html" class="active">IA</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>🤖 Laboratório de IA</h1>
+            <p>Prompts de engenharia para acelerar sua pesquisa com ética.</p>
+        </div>
+
+        <div class="card" style="border-left: 5px solid red; background-color: #fff5f5;">
+            <strong>⚠️ Atenção Ética:</strong> Nunca insira dados de pacientes reais. Verifique todas as referências geradas.
+        </div>
+
+        <br>
+
+        <div class="card">
+            <h3>Prompt: O Consultor PICO</h3>
+            <p>Use para transformar uma ideia vaga em pergunta estruturada.</p>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyText('p1')">Copiar</button>
+                <code id="p1">Aja como um professor de metodologia. Tenho uma ideia sobre [TEMA]. Ajude-me a estruturar usando a estratégia PICO (População, Intervenção, Comparação, Desfecho) e sugira 3 variações de perguntas.</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Prompt: O Arquiteto de Busca</h3>
+            <p>Gera strings booleanas para o PubMed.</p>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyText('p2')">Copiar</button>
+                <code id="p2">Aja como um bibliotecário médico. Minha pergunta PICO é [INSERIR]. Crie uma string de busca completa para o PubMed usando MeSH terms e operadores booleanos (AND/OR).</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyText(elementId) {
+            var textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Prompt copiado para a área de transferência!');
+            }, function(err) {
+                console.error('Erro ao copiar: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
