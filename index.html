@@ -3,91 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hub de Pesquisa Científica</title>
+    <title>Disciplina de Pesquisa em Ciências da Saúde</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos Exclusivos da Landing Page */
-        
-        /* Hero Section com Gradiente Suave */
         .hero-wrapper {
-            background: radial-gradient(circle at top right, #e0e7ff 0%, transparent 40%),
-                        radial-gradient(circle at bottom left, #f3e8ff 0%, transparent 40%);
-            padding-top: 4rem;
-            padding-bottom: 6rem;
             text-align: center;
+            padding: 4rem 1rem 3rem 1rem;
+            margin-bottom: 2rem;
+            background: radial-gradient(circle at center, #eff6ff 0%, transparent 70%);
         }
-
-        .hero-badge {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
+        
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
             line-height: 1.1;
+        }
+
+        /* Estilo da Universidade */
+        .university-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem; /* Levemente ajustado para caber bem em mobile */
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #1e293b, #4f46e5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            display: block;
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
+        .hero-subtitle { 
+            color: var(--text-muted); 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-size: 1.1rem;
         }
-
-        /* Ícones dos Cards com Fundo Colorido */
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .bg-blue { background: #e0f2fe; color: #0284c7; }
-        .bg-purple { background: #f3e8ff; color: #9333ea; }
-        .bg-green { background: #dcfce7; color: #16a34a; }
-        .bg-orange { background: #ffedd5; color: #ea580c; }
-
-        /* Decoração de Passo a Passo nos Cards */
+        
         .step-number {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 3rem;
-            font-weight: 800;
-            color: rgba(0,0,0,0.03);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .calendar-section {
-            background: white;
-            border-radius: 20px;
-            padding: 10px;
-            box-shadow: var(--shadow-lg);
-            margin-top: -3rem; /* Efeito de sobreposição no Hero */
-            position: relative;
-            z-index: 10;
+            position: absolute; top: 10px; right: 15px;
+            font-size: 4rem; font-weight: 800;
+            color: rgba(0,0,0,0.03); line-height: 1; pointer-events: none;
         }
 
         .footer-modern {
             text-align: center;
-            padding: 4rem 0;
+            padding: 3rem 1rem;
             border-top: 1px solid #e2e8f0;
             margin-top: 4rem;
             background: white;
+        }
+        
+        .footer-role {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0.2rem 0;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -103,88 +73,95 @@
         </div>
     </nav>
 
-    <section class="hero-wrapper">
+    <div class="hero-wrapper">
         <div class="container">
-            <span class="hero-badge">🎓 Disciplina de Pesquisa 2026</span>
-            <h1 class="hero-title">Da Curiosidade <br> à Publicação Científica</h1>
-            <p class="hero-subtitle">
-                Um ecossistema completo para guiar você em cada etapa da jornada acadêmica, 
-                potencializado por tecnologia e evidências.
-            </p>
-            <a href="#jornada" class="btn" style="padding: 1rem 2rem; font-size: 1.1rem;">
-                Começar a Jornada ↓
-            </a>
+            <span style="background: #e0e7ff; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 1rem;">Ano Letivo 2026</span>
+            
+            <h1 class="hero-title">Disciplina de Pesquisa em<br>Ciências da Saúde</h1>
+            
+            <span class="university-name">Universidade Estadual de Ciências da Saúde de Alagoas</span>
+            
+            <p class="hero-subtitle">Seu ecossistema de ferramentas para transformar curiosidade em evidência científica.</p>
         </div>
-    </section>
+    </div>
 
     <div class="container">
         
-        <h2 id="jornada" style="margin-bottom: 2rem;">Seus Módulos de Trabalho</h2>
-        
-        <div class="grid-container">
-            <div class="card">
+        <div class="vertical-stack">
+            
+            <div class="card-horizontal">
                 <span class="step-number">01</span>
-                <div class="icon-box bg-blue">💡</div>
-                <h3>Ideia & Plano</h3>
-                <p style="color: var(--text-muted);">Defina sua pergunta PICO e use o Canvas para estruturar a viabilidade do projeto.</p>
-                <a href="pagina1.html" class="btn btn-secondary">Acessar Módulo</a>
-            </div>
-
-            <div class="card">
-                <span class="step-number">02</span>
-                <div class="icon-box bg-purple">📚</div>
-                <h3>Revisão da Literatura</h3>
-                <p style="color: var(--text-muted);">Acesso direto às bases de dados (PubMed/Scielo) e gestão de referências.</p>
-                <a href="pagina2.html" class="btn btn-secondary">Acessar Módulo</a>
-            </div>
-
-            <div class="card">
-                <span class="step-number">03</span>
-                <div class="icon-box bg-green">🗣️</div>
-                <h3>Clube de Revista</h3>
-                <p style="color: var(--text-muted);">Download dos artigos da semana e roteiros para crítica metodológica.</p>
-                <a href="pagina3.html" class="btn btn-secondary">Acessar Módulo</a>
-            </div>
-
-            <div class="card" style="border: 2px solid var(--primary);">
-                <span class="step-number">04</span>
-                <div class="icon-box bg-orange">⚡</div>
-                <h3>IA & Inovação</h3>
-                <p style="color: var(--text-muted);">Biblioteca de Prompts avançados para desbloquear sua escrita e análise.</p>
-                <a href="pagina4.html" class="btn">Acessar Laboratório</a>
-            </div>
-        </div>
-
-        <div style="margin-top: 5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;">
-                <div>
-                    <h2>📅 Agenda da Turma</h2>
-                    <p style="color: var(--text-muted);">Fique atento aos prazos de entrega e datas de apresentação.</p>
+                <div class="card-icon bg-blue">💡</div>
+                <div class="card-content">
+                    <h3>Ideia & Plano de Intenção</h3>
+                    <p>Defina sua pergunta PICO, use o Canvas para estruturar a viabilidade e submeta seu plano.</p>
                 </div>
-                <button class="btn btn-secondary" style="font-size: 0.8rem;">+ Adicionar à minha agenda</button>
+                <div class="card-action">
+                    <a href="pagina1.html" class="btn btn-secondary">Acessar Módulo →</a>
+                </div>
             </div>
 
-            <div class="calendar-section">
-                <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FSao_Paulo&showTitle=0&showNav=1&showPrint=0&showTabs=1&showCalendars=0" style="border: 0" width="100%" height="500" frameborder="0" scrolling="no"></iframe>
+            <div class="card-horizontal">
+                <span class="step-number">02</span>
+                <div class="card-icon bg-purple">📚</div>
+                <div class="card-content">
+                    <h3>Revisão da Literatura</h3>
+                    <p>Acesse bases (PubMed/Scielo), aprenda estratégias de busca e gerencie referências.</p>
+                </div>
+                <div class="card-action">
+                    <a href="pagina2.html" class="btn btn-secondary">Acessar Módulo →</a>
+                </div>
+            </div>
+
+            <div class="card-horizontal">
+                <span class="step-number">03</span>
+                <div class="card-icon bg-green">🗣️</div>
+                <div class="card-content">
+                    <h3>Clube de Revista</h3>
+                    <p>Baixe os artigos da semana, vote nos próximos temas e acesse roteiros de leitura crítica.</p>
+                </div>
+                <div class="card-action">
+                    <a href="pagina3.html" class="btn btn-secondary">Acessar Módulo →</a>
+                </div>
+            </div>
+
+            <div class="card-horizontal" style="border-left: 5px solid var(--primary);">
+                <span class="step-number">04</span>
+                <div class="card-icon bg-orange">⚡</div>
+                <div class="card-content">
+                    <h3>IA & Inovação (Laboratório)</h3>
+                    <p>Use nossa biblioteca de Prompts avançados para desbloquear sua escrita e análise de dados.</p>
+                </div>
+                <div class="card-action">
+                    <a href="pagina4.html" class="btn">Acessar Lab →</a>
+                </div>
+            </div>
+
+        </div> <div style="margin-top: 4rem;">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">📅 Cronograma</h2>
+            <div style="background: white; padding: 15px; border-radius: 16px; box-shadow: var(--shadow-md);">
+                <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" width="100%" height="450" frameborder="0" scrolling="no"></iframe>
             </div>
         </div>
 
     </div>
-
+    
     <footer class="footer-modern">
         <div class="container">
-            <div style="width: 60px; height: 60px; background: #e0e7ff; border-radius: 50%; margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👨‍🏫</div>
-            <h3 style="margin-bottom: 0.5rem;">Prof. Aldemar Araujo Castro</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">
-                Médico • Cirurgião Vascular<br>
-Professor • Pesquisador • Extensionista • Empreendedor
-            </p>
-            <div style="margin-top: 2rem;">
-                <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none;">Lattes</a> •
-                <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none;">Orcid</a> •
-                <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none;">Contato</a>
+            <div style="width: 60px; height: 60px; background: #e0e7ff; color: var(--primary); border-radius: 50%; margin: 0 auto 1rem auto; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                👨‍⚕️
             </div>
-            <p style="margin-top: 3rem; font-size: 0.8rem; color: #cbd5e1;">© 2026 - Disciplina de Pesquisa na Área da Saúde<br>UNCISAL - Maceió - AL</p>
+            
+            <h3 style="margin-bottom: 0.5rem;">Prof. Aldemar Araujo Castro</h3>
+            
+            <p class="footer-role">Médico • Cirurgião Vascular</p>
+            <p class="footer-role">Professor • Pesquisador • Extensionista • Empreendedor</p>
+            
+            <div style="margin-top: 2rem;">
+                <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none; font-size: 0.9rem;">Lattes</a> •
+                <a href="#" style="color: var(--text-muted); margin: 0 10px; text-decoration: none; font-size: 0.9rem;">Orcid</a>
+            </div>
+            <p style="margin-top: 3rem; font-size: 0.8rem; color: #cbd5e1;">© 2026 Disciplina de Pesquisa em Ciências da Saúde.</p>
         </div>
     </footer>
 
