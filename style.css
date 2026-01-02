@@ -1,115 +1,143 @@
-/* style.css - A Identidade Visual da Disciplina */
+/* style.css - Design System Moderno 2025 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+
 :root {
-    --primary: #2563eb; /* Azul Acadêmico */
-    --secondary: #10b981; /* Verde Ação */
-    --bg-light: #f3f4f6;
-    --text-dark: #1f2937;
-    --card-bg: #ffffff;
+    /* Paleta de Cores Moderna */
+    --primary: #4f46e5;       /* Indigo Vibrante */
+    --primary-dark: #4338ca;  
+    --secondary: #10b981;     /* Verde Esmeralda */
+    --accent: #f59e0b;        /* Amber para destaque */
+    
+    --bg-body: #f8fafc;       /* Cinza muito suave (quase branco) */
+    --surface: #ffffff;       /* Branco puro para cards */
+    
+    --text-main: #1e293b;     /* Cinza chumbo */
+    --text-muted: #64748b;    /* Cinza médio */
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
     margin: 0;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- Navegação Global (Sticky Header) --- */
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
+    margin-top: 0;
+}
+
+/* --- Navegação Flutuante (Glassmorphism) --- */
 .navbar {
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: sticky;
-    top: 0;
+    top: 20px; /* Flutuando um pouco abaixo do topo */
     z-index: 1000;
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .nav-links {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-md);
     display: flex;
     gap: 2rem;
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--text-muted);
     font-weight: 600;
-    text-transform: uppercase;
     font-size: 0.9rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: var(--primary);
-    border-bottom: 2px solid var(--primary);
 }
 
-/* --- Layout Básico --- */
+/* Bolinha indicadora abaixo do link ativo */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+/* --- Layout --- */
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-.hero {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.hero h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-.hero p { color: #666; font-size: 1.2rem; }
-
-/* --- Cards e Grids --- */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
+/* --- Cards Modernos --- */
 .card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.card:hover { transform: translateY(-5px); }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+}
 
+/* --- Botões --- */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.8rem 1.5rem;
     background: var(--primary);
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
     border: none;
     cursor: pointer;
 }
 
-.btn:hover { opacity: 0.9; }
-.btn-secondary { background: var(--secondary); }
-
-/* --- Específico para IA (Botão Copiar) --- */
-.prompt-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid var(--secondary);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    position: relative;
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
 }
 
-.copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #e2e8f0;
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
+.btn-secondary {
+    background: #e0e7ff;
+    color: var(--primary);
+}
+.btn-secondary:hover { background: #c7d2fe; }
+
+/* --- Grid --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
