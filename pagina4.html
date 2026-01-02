@@ -2,62 +2,399 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Módulo 4: Recursos de IA</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório de IA - Pesquisa em Ciências da Saúde</title>
+    
+    <!-- Fontes Modernas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM 2026 (Herdado do Hub) --- */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #059669;
+            --accent: #d97706;        /* Cor Destaque desta página */
+            --alert: #dc2626;
+            
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --border-color: #e2e8f0;
+            
+            --text-title: #0f172a;
+            --text-body: #475569;
+            
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --shadow-float: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-page: #0f172a;
+            --surface: #1e293b;
+            --border-color: #334155;
+            --text-title: #f1f5f9;
+            --text-body: #94a3b8;
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- RESET & GLOBAL --- */
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            margin: 0;
+            line-height: 1.6;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 32px 32px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--text-title); margin: 0; }
+
+        /* --- COMPONENTES HERDADOS --- */
+        .flash-alert {
+            background-color: var(--primary); /* Azul aqui para diferenciar do hub */
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 90;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 16px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-capsule {
+            background: var(--surface);
+            padding: 0.6rem 0.8rem;
+            border-radius: 99px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            max-width: 100%;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover { background: var(--bg-page); color: var(--primary); }
+        .nav-link.active { background: var(--accent); color: white; box-shadow: 0 2px 5px rgba(217, 119, 6, 0.3); }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-body);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-float);
+        }
+        .theme-toggle:hover { transform: scale(1.1); color: var(--primary); }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem 3rem 1rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 100%);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--accent); /* Cor destaque da página */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- SINGLE RESOURCE CARD --- */
+        .resource-highlight {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-hover);
+            max-width: 600px;
+            margin: 2rem auto;
+            border-top: 6px solid var(--accent);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            margin-top: 1.5rem;
+        }
+
+        .btn-accent { 
+            background: var(--accent); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+        .btn-accent:hover { 
+            background: #b45309; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6);
+        }
+
+        /* Footer & Mobile (Herdados do Hub) */
+        .footer {
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: 4rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .prof-avatar {
+            width: 64px;
+            height: 64px;
+            background: #e0e7ff;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 1.8rem;
+        }
+        body.dark-mode .prof-avatar { background: rgba(37, 99, 235, 0.2); }
+
+        .shortcuts-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .shortcut-link {
+            font-size: 0.85rem;
+            color: var(--text-body);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+        }
+        .shortcut-link:hover { color: var(--primary); }
+
+        .qr-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .qr-box {
+            display: inline-block;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .fab-support {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: var(--shadow-float);
+            text-decoration: none;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 0 1rem;
+                margin: 0 -0.5rem;
+                width: calc(100% + 1rem);
+            }
+            .hero-title { font-size: 1.8rem; }
+            .container { padding: 0 1rem; }
+            .shortcuts-grid { flex-direction: column; gap: 1rem; }
+            .qr-section { display: none; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Aviso diferente para esta página -->
+    <div class="flash-alert">
+        ⚡ Dica: Use seu e-mail institucional para acessar as versões Pro (se disponível).
+    </div>
+
+    <!-- Navegação Flutuante -->
     <nav class="navbar">
-        <div class="nav-links">
-            <a href="landing.html">Home</a>
-            <a href="pagina1.html">Ideia</a>
-            <a href="pagina2.html">Revisão</a>
-            <a href="pagina3.html">Clube</a>
-            <a href="pagina4.html" class="active">IA</a>
+        <div class="nav-capsule">
+            <a href="landing.html" class="nav-link">Início</a>
+            <a href="pagina1.html" class="nav-link">Ideia</a>
+            <a href="pagina2.html" class="nav-link">Revisão</a>
+            <a href="pagina3.html" class="nav-link">Clube</a>
+            <a href="pagina4.html" class="nav-link active">IA Lab</a>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="hero">
-            <h1>🤖 Laboratório de IA</h1>
-            <p>Prompts de engenharia para acelerar sua pesquisa com ética.</p>
+    <!-- Botão Modo Escuro Fixo -->
+    <button class="theme-toggle" id="themeToggle" title="Alternar Modo Escuro">
+        🌙
+    </button>
+
+    <!-- Cabeçalho Específico -->
+    <header class="hero">
+        <div class="container">
+            <span style="font-size: 3rem;">⚡</span>
+            <h1 class="hero-title">Laboratório de<br>IA & Inovação</h1>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--text-body);">
+                Acesse nossa coleção curada de ferramentas generativas e preditivas para acelerar sua produção científica.
+            </p>
         </div>
+    </header>
 
-        <div class="card" style="border-left: 5px solid red; background-color: #fff5f5;">
-            <strong>⚠️ Atenção Ética:</strong> Nunca insira dados de pacientes reais. Verifique todas as referências geradas.
-        </div>
+    <!-- Área Principal -->
+    <main class="container">
 
-        <br>
-
-        <div class="card">
-            <h3>Prompt: O Consultor PICO</h3>
-            <p>Use para transformar uma ideia vaga em pergunta estruturada.</p>
+        <!-- Recurso Único -->
+        <div class="resource-highlight">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-title);">Portal de Ferramentas IA</h2>
+            <p style="color: var(--text-body); margin-bottom: 1rem;">
+                Centralizamos todos os assistentes, prompts e tutoriais em um único ambiente externo para facilitar sua navegação.
+            </p>
             
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyText('p1')">Copiar</button>
-                <code id="p1">Aja como um professor de metodologia. Tenho uma ideia sobre [TEMA]. Ajude-me a estruturar usando a estratégia PICO (População, Intervenção, Comparação, Desfecho) e sugira 3 variações de perguntas.</code>
+            <a href="https://bit.ly/ia-pesquisa" target="_blank" class="btn btn-accent">
+                Acessar Agora
+            </a>
+            
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-body); opacity: 0.8;">
+                Link externo seguro (bit.ly)
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Botão Flutuante -->
+    <a href="https://chat.whatsapp.com/EhKptgra6V0I2oYcMHavFO" class="fab-support" target="_blank" title="Suporte">💬</a>
+
+    <!-- Rodapé (Mantido o mesmo do Hub/Landing) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="prof-avatar">
+                👨‍⚕️
+            </div>
+            
+            <h3 style="margin-bottom: 0.5rem;">Prof. Aldemar Araujo Castro</h3>
+            <p class="prof-role">Médico, Cirurgião Vascular</p>
+            <p class="prof-role">Professor, Pesquisador, Extensionista, Empreendedor</p>
+            
+            <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <a href="http://lattes.cnpq.br/2259022333178681" target="_blank" style="color: var(--primary); margin: 0 10px; text-decoration: none; font-weight: 600;">Lattes</a> •
+                <a href="http://orcid.org/0000-0003-0212-5950" target="_blank" style="color: var(--primary); margin: 0 10px; text-decoration: none; font-weight: 600;">Orcid</a>
+            </div>
+
+            <!-- 4. ATALHOS INSTITUCIONAIS -->
+            <div class="shortcuts-grid">
+                <a href="https://alunos.uncisal.edu.br" target="_blank" class="shortcut-link">🏛️ Portal do Aluno</a>
+                <a href="https://pergamum.uncisal.edu.br" target="_blank" class="shortcut-link">📚 Biblioteca Virtual</a>
+                <a href="https://cep.uncisal.edu.br" target="_blank" class="shortcut-link">⚖️ Comitê de Ética</a>
+                <a href="https://www.uncisal.edu.br/uploads/2025/12/Calendario-Academico-UNCISAL---2026.pdf" target="_blank" class="shortcut-link">📅 Calendário Acadêmico</a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">
+                © 2026 Disciplina de Pesquisa em Ciências da Saúde
+            </p>
+
+            <!-- QR Code -->
+            <div class="qr-section">
+                <div class="qr-box">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://seusite.com" alt="QR Code" class="qr-image">
+                    <div class="qr-text">Acesse no celular</div>
+                </div>
             </div>
         </div>
-
-        <div class="card">
-            <h3>Prompt: O Arquiteto de Busca</h3>
-            <p>Gera strings booleanas para o PubMed.</p>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyText('p2')">Copiar</button>
-                <code id="p2">Aja como um bibliotecário médico. Minha pergunta PICO é [INSERIR]. Crie uma string de busca completa para o PubMed usando MeSH terms e operadores booleanos (AND/OR).</code>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script>
-        function copyText(elementId) {
-            var textToCopy = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Prompt copiado para a área de transferência!');
-            }, function(err) {
-                console.error('Erro ao copiar: ', err);
-            });
+        // Lógica de Tema
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '☀️';
         }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '🌙';
+            }
+        });
     </script>
 </body>
 </html>
